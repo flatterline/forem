@@ -67,6 +67,21 @@ module Forem
 
     end
 
+    def flag
+      authorize! :moderate, Forem::Forum
+      @post = @topic.posts.find(params[:post_id])
+
+      if @post.flagged?
+        flash[:notice] = t("forem.post.unflagged")
+        @post.unflag!
+      else
+        flash[:alert] = t("forem.post.flagged")
+        @post.flag!
+        Forem::ModerationMailer.post_flagged(@post).deliver
+      end
+      redirect_to [@topic.forum, @topic]
+    end
+
     private
 
     def find_topic

@@ -143,6 +143,13 @@ en:
           'true': Unpin this topic
           'false': Pin this topic
     post:
+      flagged: The selected post has been flagged.
+      unflagged: The selected post has been un-flagged.
+      flag:
+        'true': 'Un-Flag'
+        'false': Flag
+      post_flagged: A forum post has been flagged as inappropriate.
+      received_flagging: A forum post has been flagged
       buttons:
         reply: Post Reply
         edit: Edit

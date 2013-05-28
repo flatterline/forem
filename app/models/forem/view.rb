@@ -14,7 +14,7 @@ module Forem
 
     private
     def set_viewed_at_to_now
-      self.current_viewed_at = Time.now
+      self.current_viewed_at = Time.zone.now
       self.past_viewed_at = current_viewed_at
     end
   end

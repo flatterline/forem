@@ -1,0 +1,3 @@
+<%= I18n.t('post_flagged', :scope => 'forem.post') %> You can view it here:
+
+<%= link_to forem.forum_topic_url(@post.topic.forum_id, @post.topic), forem.forum_topic_url(@post.topic.forum_id, @post.topic) %>

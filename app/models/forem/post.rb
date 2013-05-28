@@ -91,6 +91,14 @@ module Forem
       user == other_user || other_user.forem_admin?
     end
 
+    def flag!
+      self.update_attribute(:flagged, true)
+    end
+
+    def unflag!
+      self.update_attribute(:flagged, false)
+    end
+
     protected
 
     def subscribe_replier

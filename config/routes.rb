@@ -11,7 +11,9 @@ Forem::Engine.routes.draw do
   end
 
   resources :topics, :only => [:new, :create, :index, :show, :destroy] do
-    resources :posts
+    resources :posts do
+      put :flag
+    end
   end
 
   get 'forums/:forum_id/moderation', :to => "moderation#index", :as => :forum_moderator_tools
