@@ -14,7 +14,10 @@
           <% if can?(:edit_post, post.topic.forum) %>
             <li><%= link_to t('edit', :scope => 'forem.post'), forem.edit_topic_post_path(post.topic, post) %></li>
           <% end %>
-          <li><%= link_to t('delete', :scope => 'forem.topic'), forem.topic_post_path(post.topic, post), :method => :delete, :confirm => t("are_you_sure") %></li>
+          <% if can?(:delete_post, post.topic.forum) %>
+            <li><%= link_to t('delete', :scope => 'forem.topic'), forem.topic_post_path(post.topic, post), :method => :delete, :confirm => t("are_you_sure") %></li>
+          <% end %>
+
           <li><%= link_to t("flag.#{post.flagged}", :scope => 'forem.post'), forem.topic_post_flag_path(post.topic, post), :method => :put %></li>
         </ul>
       <% end %>
@@ -67,15 +70,16 @@
               <li><%= link_to t('quote', :scope => 'forem.topic'), forem.new_topic_post_path(post.topic, :reply_to_id => post.id, :quote => true) %></li>
             <% end %>
           <% end %>
+
           <% if post.owner_or_admin?(forem_user) %>
             <% if can?(:edit_post, post.topic.forum) %>
               <li><%= link_to t('edit', :scope => 'forem.post'), forem.edit_topic_post_path(post.topic, post) %></li>
             <% end %>
             <li><%= link_to t('delete', :scope => 'forem.topic'), forem.topic_post_path(post.topic, post), :method => :delete, :confirm => t("are_you_sure") %></li>
-            <% if can?(:moderate, Forem::Forum) %>
-              <li><%= link_to t("flag.#{post.flagged}", :scope => 'forem.post'), forem.topic_post_flag_path(post.topic, post), :method => :put %></li>
-            <% end %>
+
           <% end %>
+
+          <li><%= link_to t("flag.#{post.flagged}", :scope => 'forem.post'), forem.topic_post_flag_path(post.topic, post), :method => :put %></li>
         <% end %>
       </ul>
     </div>

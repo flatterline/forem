@@ -5,6 +5,12 @@ class Forem::ApplicationController < ApplicationController
     redirect_to root_path, :alert => t("forem.access_denied")
   end
 
+  around_filter :user_time_zone, :if => :forem_user
+
+  def user_time_zone(&block)
+    Time.use_zone(forem_user.timezone, &block)
+  end
+
   def current_ability
     Forem::Ability.new(forem_user)
   end
