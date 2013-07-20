@@ -4,7 +4,7 @@ module Forem
     def post_flagged(post)
       @post = Post.find(post.id)
 
-      mail(:to      => Refinery::Setting.get('global_community_manager_address', scoping: 'forums'),
+      mail(:to      => Refinery::Setting.get('global_community_manager_address'),
            :from    => 'no-reply@wtca.org',
            :subject => I18n.t('forem.post.received_flagging') )
     end
