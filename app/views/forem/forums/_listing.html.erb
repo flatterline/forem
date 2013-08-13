@@ -1,13 +1,22 @@
-<table id='forums' class='forums subdued' cellspacing='0'>
-  <thead>
-  <tr>
-    <th class="desc-and-last-post"><%= t('forum', :scope => 'forem.general') %></th>
-    <th class="topics-count"><%= t('topics', :scope => 'forem.general') %></th>
-    <th class="posts-count"><%= t('posts', :scope => 'forem.general') %></th>
-    <th class="views-count"><%= t('forem.forums.index.views') %></th>
-  </tr>
-  </thead>
-  <tbody>
-    <%= render category.forums %>
-  </tbody>
-</table>
+<div id="forum" class="forum">
+  <div class="forum-controls">
+    <p class="forum-controls-timezone">All time zones are in conference time zone: (<%= Time.zone.name %>)</p>
+    <!-- <p class="forum-controls-sort">Sort By: <a href="#" class="active">Updated</a> <a href="#">Most Active</a></p> -->
+  </div>
+
+  <table class="table-striped forum-topics">
+    <thead class="forum-topics-header">
+      <tr>
+        <th class="span6">Title</th>
+        <th class="span2"><%= t('topics', :scope => 'forem.general') %></th>
+        <th class="span2"><%= t('posts', :scope => 'forem.general') %></th>
+        <th class="span3"><%= t('forem.forums.index.views') %></th>
+      </tr>
+    </thead>
+
+    <tbody class="forum-topics-body">
+      <%= render category.forums %>
+    </tbody>
+
+  </table>
+</div>

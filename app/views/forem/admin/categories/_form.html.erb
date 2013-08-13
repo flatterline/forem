@@ -1,4 +1,5 @@
 <%= simple_form_for [forem, :admin, @category] do |f| %>
   <%= f.input :name %>
-  <%= f.submit %>
+  <%= f.submit t('save', scope: 'general'), class: 'btn btn-primary' %>
+  <%= link_to t('cancel', scope: :general), forem.admin_categories_path, class: 'btn' %>
 <% end %>

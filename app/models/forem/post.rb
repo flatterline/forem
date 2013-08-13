@@ -39,6 +39,8 @@ module Forem
     after_save :blacklist_user, :if => :spam?
     after_save :email_topic_subscribers, :if => Proc.new { |p| p.approved? && !p.notified? }
 
+    profanity_filter! :text
+
     class << self
       def approved
         where(:state => "approved")

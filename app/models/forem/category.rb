@@ -9,6 +9,8 @@ module Forem
     validates :name, :presence => true
     attr_accessible :name
 
+    profanity_filter! :name
+
     def to_s
       name
     end

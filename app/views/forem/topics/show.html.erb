@@ -1,24 +1,27 @@
+<%= currently_at t('topics', scope: 'layouts.forums') %>
+
 <div id='topic' class='<%= 'un' unless @topic.locked? %>locked'>
+
   <%= render :partial => 'forem/topics/head', :locals => { :topic => @topic } %>
 
   <menu>
     <% if @topic.can_be_replied_to? && can?(:reply, @topic) %>
-      <%= link_to t(".reply"), forem.new_topic_post_path(@topic) %>
+      <%= link_to t(".reply"), forem.new_topic_post_path(@topic), class: 'btn' %>
     <% end %>
     <% if @topic.user == forem_user || forem_admin? %>
-      <%= link_to t(".delete"), forem.forum_topic_path(@forum, @topic), :method => :delete, :confirm => t("are_you_sure") %>
+      <%= link_to t(".delete"), forem.forum_topic_path(@forum, @topic), :method => :delete, :confirm => t("are_you_sure"), class: 'btn' %>
     <% end %>
     <% if forem_user %>
       <% if !@topic.subscriber?(forem_user.id) %>
-        <%= link_to t(".subscribe"), forem.subscribe_forum_topic_path(@forum, @topic) %>
+        <%= link_to t(".subscribe"), forem.subscribe_forum_topic_path(@forum, @topic), class: 'btn' %>
       <% else %>
-        <%= link_to t(".unsubscribe"), forem.unsubscribe_forum_topic_path(@forum, @topic) %>
+        <%= link_to t(".unsubscribe"), forem.unsubscribe_forum_topic_path(@forum, @topic), class: 'btn' %>
       <% end %>
     <% end %>
   </menu>
 
   <% if forem_admin? %>
-    <%= link_to t(".hide.#{@topic.hidden}"), forem.toggle_hide_admin_topic_path(@topic), :method => :put %> | 
+    <%= link_to t(".hide.#{@topic.hidden}"), forem.toggle_hide_admin_topic_path(@topic), :method => :put %> |
     <%= link_to t(".lock.#{@topic.locked}"), forem.toggle_lock_admin_topic_path(@topic), :method => :put %> |
     <%= link_to t(".pin.#{@topic.pinned}"), forem.toggle_pin_admin_topic_path(@topic), :method => :put %>
   <% end %>
@@ -41,4 +44,17 @@
   </div>
 
   <%= forem_pages_widget(@posts) %>
+</div>
+
+
+<div class="row forum">
+  <div class="span10">
+    <ol class="forum-posts">
+
+    </ol>
+  </div>
+
+  <div class="span2 forum-sponsor-wrap">
+    SPONSOR.
+  </div>
 </div>

@@ -39,6 +39,8 @@ module Forem
     after_create :subscribe_poster
     after_create :skip_pending_review
 
+    profanity_filter! :subject
+
     class << self
       def visible
         where(:hidden => false)

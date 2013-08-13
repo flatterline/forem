@@ -9,5 +9,6 @@
   <%= f.check_box :hidden %>
 
   <br />
-  <%= f.submit %>
+  <%= f.submit t('save', scope: 'general'), class: 'btn btn-primary' %>
+  <%= link_to t('cancel', scope: :general), :back, class: 'btn' %>
 <% end %>

@@ -1,9 +1,10 @@
 <%= simple_form_for [forem, :admin, @forum] do |f| %>
   <%= f.association :category, :include_blank => false %>
   <%= f.input :title %>
-  <%= f.input :description, :as => :text %>
+  <%= f.input :description, :as => :text, input_html: {class: 'span8', rows: 5} %>
 
   <h3><%= t('forem.moderator_groups') %></h3>
   <%= f.association :moderators, :as => :check_boxes %>
-  <%= f.submit %>
+  <%= f.submit t('save', scope: :general), class: 'btn btn-primary' %>
+  <%= link_to t('cancel', scope: :general), forem.admin_forums_path, class: 'btn' %>
 <% end %>

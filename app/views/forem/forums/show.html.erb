@@ -1,23 +1,41 @@
+<%= currently_at t('topics', scope: 'layouts.forums') %>
+
 <%= render :partial => 'forem/forums/head', :locals => { :forum => @forum } %>
 
 <%= forem_pages_widget(@topics) %>
 
-<table class='topics subdued' cellspacing='0'>
-  <thead>
-    <tr>
-      <th class="icon"></th>
-      <th class="byline"><%= t('forem.topic.headings.topic') -%></th>
-      <th class="latest-post"><%= t('forem.topic.headings.latest') -%></th>
-      <th class="posts-count"><%= t('forem.topic.headings.posts') -%></th>
-      <th class="views-count"><%= t('forem.topic.headings.views') -%></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @topics.empty? %>
-      <tr><td colspan='5' align='center'><%= t('forem.topic.none') %></td></tr>
-    <% end %>
-    <%= render @topics %>
-  </tbody>
-</table>
+<!-- Topics -->
+<div id="forum" class="forum">
+  <div class="forum-controls">
+    <!-- <p class="forum-controls-timezone">All time zones are in conference time zone: (US.Mountain)</p> -->
+    <!-- <p class="forum-controls-sort">Sort By: <a href="#" class="active">Updated</a> <a href="#">Most Active</a></p> -->
+  </div>
+
+  <table class="table-striped forum-topics">
+
+    <thead class="forum-topics-header">
+
+      <tr>
+        <th class="span1"></th>
+        <th class="span1"></th>
+        <th class="span5"><%= t('forem.topic.headings.topic') -%></th>
+        <th class="span1"><%= t('forem.topic.headings.posts') -%></th>
+        <th class="span1"><%= t('forem.topic.headings.views') -%></th>
+        <th class="span2"><%= t('forem.topic.headings.latest') -%></th>
+      </tr>
+
+    </thead>
+
+    <tbody class="forum-topics-body">
+      <% if @topics.empty? %>
+        <tr><td colspan='5' align='center'><%= t('forem.topic.none') %></td></tr>
+      <% end %>
+
+      <%= render @topics %>
+    </tbody>
+
+  </table>
+
+</div>
 
 <%= forem_pages_widget(@topics) %>

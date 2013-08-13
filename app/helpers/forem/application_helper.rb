@@ -34,7 +34,7 @@ module Forem
       end
     end
 
-    def forem_atom_auto_discovery_link_tag  
+    def forem_atom_auto_discovery_link_tag
       if controller_name == "topics" && action_name == "show"
         auto_discovery_link_tag(:atom)
       end

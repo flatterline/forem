@@ -15,8 +15,9 @@ en:
 
     access_denied: "You are not allowed to do that."
     admin:
+      search: Search
       area: Admin Area
-      welcome: "Welcome to forem's Admin Area."
+      welcome: "Welcome to the Forum Admin Area."
       forum:
         index: Manage Forums
         new: Creating a new forum
@@ -34,6 +35,7 @@ en:
         index:
           last_post: Last post
           none: None
+        forum:
           moderators: Moderators
       group:
         index: Manage Groups
@@ -41,13 +43,16 @@ en:
         created: The group was successfully created.
         not_created: Group could not be created.
         deleted: The selected group has been deleted.
+        members: "Members of group, %{group}"
       groups:
         show:
           add_member: Add
         edit: Edit
+        new: New
         delete: Delete
         name: Name
       category:
+        edit: "Edit %{title}"
         index: Manage Forum Categories
         new: Creating a new Forum Category
         new_link: New Forum Category
@@ -87,6 +92,7 @@ en:
         views: Views
         last_post: 'Last Post:'
         none: None
+        search_results: Search Results
     topic:
       headings:
         topic: Topic

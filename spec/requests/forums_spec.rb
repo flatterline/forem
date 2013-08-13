@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'forem/formatters/redcarpet'
+# require 'forem/formatters/redcarpet'
 
 describe "forums" do
   let!(:forum) { FactoryGirl.create(:forum) }

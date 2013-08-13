@@ -1,5 +1,11 @@
-<%= f.input :text %>
+<div class="row">
+  <div class="span8">
+    <%= f.input :text, input_html: {class: 'span8', rows: 6} %>
 
-<% if params[:reply_to_id] %>
-  <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
-<% end %>
+    <% if params[:reply_to_id] %>
+      <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
+    <% end %>
+  </div>
+</div>
+
+

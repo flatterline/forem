@@ -13,3 +13,4 @@ gem 'pry-nav'
 
 gem 'localeapp'
 
+gem 'profanity_filter', git: 'https://github.com/preplay/profanity_filter.git'

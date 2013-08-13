@@ -1,6 +1,13 @@
 <% if can?(:read, forum) %>
   <tr class="forum-topics-item">
     <td class="forum-topics-item-cell">
+      <%= link_to t('edit', :scope => 'forem.admin.forums'), forem.edit_admin_forum_path(forum) %>
+    </td>
+    <td class="forum-topics-item-cell">
+      <%= link_to t('delete', :scope => 'forem.admin.forums'), forem.admin_forum_path(forum), :method => :delete, :confirm => t("delete_confirm", :scope => "forem.admin.forums") %>
+    </td>
+    <td class="forum-topics-item-cell">
+      _FORUM
       <%= link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "forum-topics-title" %>
       <p>
         <%= forem_format(forum.description) %>
@@ -12,18 +19,29 @@
           <%= t('forem.forums.index.none') -%>
         <% end %>
       </p>
+      <br>
+      <span class='moderators'>
+        <strong><%= t('.moderators') %>:</strong>
+        <% if forum.moderators.exists? %>
+          <% forum.moderators.map do |moderator| %>
+            <%= link_to moderator, [forem, :admin, moderator] %>
+          <% end.to_sentence %>
+        <% else %>
+          None
+        <% end %>
+      </span>
     </td>
 
     <td class="text-center forum-topics-item-cell">
-      <%= topics_count(forum) %>
+      <%= forum.topics.count %>
     </td>
 
     <td class="text-center forum-topics-item-cell">
-      <%= posts_count(forum) %>
+      <%= forum.posts.count %>
     </td>
 
     <td class="text-center forum-topics-item-cell">
-      <%= forum.views_count %>
+      <%= forum.views.count %>
     </td>
   </tr>
 <% end %>

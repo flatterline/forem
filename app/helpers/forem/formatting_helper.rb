@@ -21,7 +21,7 @@ module Forem
       if Forem.formatter.respond_to?(:sanitize)
         Forem.formatter.sanitize(text)
       else
-        sanitize(text, :tags=>%W(p), :attributes=>[])
+        simple_format(sanitize(text, :tags=>%W(p blockquote), :attributes=>[]))
       end
     end
   end

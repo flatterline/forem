@@ -4,6 +4,12 @@ GIT
   specs:
     forem-theme-base (0.0.1)
 
+GIT
+  remote: https://github.com/preplay/profanity_filter.git
+  revision: 428bef00b85c562b0afba9091e7877561df04901
+  specs:
+    profanity_filter (0.1.1)
+
 PATH
   remote: .
   specs:
@@ -203,6 +209,7 @@ DEPENDENCIES
   localeapp
   mysql2
   pg
+  profanity_filter!
   pry-nav
   pry-rails
   rspec-rails (~> 2.6)

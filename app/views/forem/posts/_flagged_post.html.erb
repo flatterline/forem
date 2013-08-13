@@ -1,0 +1,46 @@
+<li id='<%= dom_id(post) %>' class="row forum-post">
+  <a name='post-<%= post.id %>'></a>
+
+  <aside class="span1 forum-post-meta-data">
+    <%= image_tag post.user.custom_avatar_url('60x60'), class: 'forum-topic-author-img' %>
+  </aside>
+
+  <div class="span9">
+    <header>This post has been flagged as inappropriate</header>
+
+    <% if can?(:moderate, Forem::Forum) %>
+      <article class="forum-post-article">
+        <ul class='actions'>
+          <% if can?(:edit_post, post.topic.forum) %>
+            <li><%= link_to t('edit', :scope => 'forem.post'), forem.edit_topic_post_path(post.topic, post) %></li>
+          <% end %>
+          <% if can?(:delete_post, post.topic.forum) %>
+            <li><%= link_to t('delete', :scope => 'forem.topic'), forem.topic_post_path(post.topic, post), :method => :delete, :confirm => t("are_you_sure") %></li>
+          <% end %>
+
+          <li><%= link_to t("flag.#{post.flagged}", :scope => 'forem.post'), forem.topic_post_flag_path(post.topic, post), :method => :put %></li>
+        </ul>
+
+        <h4 class="forum-post-title">
+          Growing Trade - What works for you?
+        </h4>
+
+        <div class="forum-post-body">
+          <%= forem_format(post.text) %>
+
+          <% if post.reply_to %>
+            <span class='in_reply_to'>
+              <%= link_to "#{t("forem.post.in_reply_to")} #{post.reply_to.user}", "#post-#{post.reply_to.id}" %>
+            </span>
+          <% end %>
+          <div style="clear:right;"></div>
+        </div>
+
+        <div class="forum-post-details">
+          <span class="forum-post-date"><%= post.created_at.to_s(:db) -%> <%= "#{time_ago_in_words(post.created_at)} #{t("ago")}" %></span>
+        </div>
+      </article>
+    <% end %>
+
+  </div>
+</li>
