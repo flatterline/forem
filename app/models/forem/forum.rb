@@ -20,7 +20,7 @@ module Forem
 
     alias_attribute :title, :name
 
-    profanity_filter! :title, :name, :description
+    profanity_filter! :name, :description
 
     # Fix for #339
     default_scope order('name ASC')
